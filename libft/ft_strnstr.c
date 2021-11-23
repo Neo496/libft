@@ -6,7 +6,7 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 16:04:04 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/11 18:40:01 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/20 13:43:54 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 // int main()
 // {
-// 	char *s1 = "oh no not the empty string !";
-// 	char *s2 = "oh ";
+// 	char *s1 = "heeello buddy";
+// 	char *s2 = "ll0 ";
 // 	size_t max = strlen(s1);
 // 	char *i1 = strnstr(s1, s2, 0);
 // 	char *i2 = ft_strnstr(s1, s2, 0);

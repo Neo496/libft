@@ -5,120 +5,108 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 14:25:32 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/14 11:03:03 by atouba           ###   ########.fr       */
+/*   Created: 2021/11/22 18:47:48 by atouba            #+#    #+#             */
+/*   Updated: 2021/11/23 09:03:20 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	n_char(char	const *str, char c)
+static int	wcount(char const *s, char c)
 {
-	size_t	i;
+	int		i;
+	int		words;
 
+	words = 0;
 	i = 0;
-	while (str[i] != c && str[i])
+	if (s == 0)
+		return (-1);
+	while (s[i] != '\0')
+	{
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+			words++;
 		i++;
-	return (i);
+	}
+	return (words);
 }
 
-int	n_words(char const *s, char c)
+static void	ft_free(char **ptr, int wc)
 {
 	int	i;
-	int	ws;
 
-	ws = 0;
-	i = 0;
-	while (s[i])
+	i = wc + 1;
+	while (i > 0)
 	{
-		if (s[i] != c && i == 0)
-			ws++;
-		else if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0' && i > 0)
-			ws++;
+		free(ptr[i]);
+		i--;
+	}
+}
+
+static char	*ft_strndup(const char *s, char **ptr, size_t len, char c)
+{
+	char	*p;
+	size_t	i;
+	int		wc;
+
+	wc = wcount(s, c);
+	i = 0;
+	p = (char *)malloc(len * sizeof(char) + 1);
+	if (p == NULL)
+	{
+		ft_free(ptr, wc);
+		free(ptr);
+	}
+	while (i < len)
+	{
+		p[i] = s[i];
 		i++;
 	}
-	return (ws + 1);
+	p[i] = '\0';
+	return (p);
 }
-// "sp th  fo!  "
-char	**tab(char const *s, char c)
+
+static void	ft_zero(int *i, int *j, int *k, int *len)
+{
+	*i = 0;
+	*j = -1;
+	*len = 0;
+	*k = 0;
+}
+
+char	**ft_split(char const *s, char c )
 {
 	int		i;
-	int		n;
-	int		word_count;
-	char	**ans;
+	int		j;
+	int		len;
+	char	**ptr;
+	int		k;
 
-	if (!s)
-		return (0);
-	ans = malloc(sizeof(char *) * n_words(s, c));
-	if (!ans)
-		return (0);
-	word_count = 0;
-	i = 0;
-	n = 0;
-	while (s[i])
+	ft_zero(&i, &j, &k, &len);
+	ptr = (char **)malloc((wcount(s, c) + 1) * sizeof(char *));
+	if (!(ptr))
+		return (NULL);
+	while (++j < wcount(s, c))
 	{
-		if (s[i] != c)
-		{
-			ans[word_count] = malloc(sizeof(n_char(s + i, c)));
-			word_count++;
-			i += n_char(s + i, c);
-		}
-		else
+		while (s[i] == c && s[i] != '\0')
 			i++;
+		while (s[i] != c && s[i])
+		{
+			len++;
+			i++;
+		}
+		k = i - len;
+		ptr[j] = ft_strndup(&s[k], ptr, len, c);
+		len = 0;
 	}
-	ans[n_words(s, c) - 1] = 0;
-	return (ans);
+	ptr[j] = 0;
+	return (ptr);
 }
 
-//char	*ft_strncpy()
-// don't forget to replace strncpy function with ft_strlcpy 
-// difference between strlcpy and strncpy
-char	**ft_split(char const *s, char c)
-{
-	char	**ans;
-	int		i;
-	int		w_count;
-
-	w_count = 0;
-	i = 0;
-	ans = tab(s, c);
-	if (!ans)
-		return (0);
-	if (!s)
-		return (0);
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			strlcpy(ans[w_count], s + i, n_char(s + i, c) + 1);
-			i += n_char(s + i, c);
-			w_count++;
-		}
-		else
-			i++;
-	}
-	return (ans);
-}
-
+// #include <stdio.h>
 // int main()
 // {
-//     //char *a = "heyheyhelloeana";
-// 	char *string = "  sp    h     ffd";
-
-// 	char *s = "      split       this for   me   !       ";
-
-	
-
-// 	char *s1 = "split  ||this|for|me|||||!|";
-// 	char **result = ft_split(s1, '|');
-// 	// char **result = ft_split(s, '|');
-//     //printf("%d  %d", n_words(a, 'e'), tab(a, 'e'));
-//     int i = 0;
-//   //  char **x = ft_split("  tripouille  42  ", ' ');
-// //    printf("%d", n_words("  tripouille  42  ", ' '));
-// 	// while (i < n_words(string, ' '))
-//     // {
-//        printf("%s", result[i++]);
-//     // }
-//     // printf("%d \n%ld", n_words(s, ' '), n_char(s + 1, ' '));
+// 	char **a = ft_split(0, 0);
+// 	int i = 0;
+// 	while (a[i])
+// 		printf("%s ", a[i++]);
 // }

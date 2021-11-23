@@ -6,7 +6,7 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:07:19 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/14 13:52:50 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/21 17:10:31 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	if (!(s))
+	if (!(s) || fd < 0)
 		return ;
 	while (s[i])
 		ft_putchar_fd(s[i++], fd);

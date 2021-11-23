@@ -6,15 +6,15 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 13:41:49 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/15 13:51:57 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/20 13:34:58 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdlib.h>
-//#include <stdio.h>
+// #include <stdlib.h>
+// #include <stdio.h>
 #include "libft.h"
 
-static	long long	isneg(char c, int *i)
+static	int	isneg(char c, int *i)
 {
 	if (c == '-')
 	{
@@ -26,15 +26,22 @@ static	long long	isneg(char c, int *i)
 	return (1);
 }
 
+static	void	initialise(int *a, unsigned long long *b, int *c)
+{
+	*a = 0;
+	*b = 0;
+	*c = 1;
+}
+
 int	ft_atoi(const char *str)
 {
 	int					i;
 	unsigned long long	ans;
-	long long			sign;
+	int					sign;
+	unsigned long long	max_long;
 
-	i = 0;
-	ans = 0;
-	sign = 0;
+	max_long = 9223372036854775807;
+	initialise(&i, &ans, &sign);
 	while (str[i] == '\t' || str[i] == '\n'
 		|| str[i] == '\v' || str[i] == '\r' || str[i] == '\f' || str[i] == ' ')
 		i++;
@@ -44,22 +51,22 @@ int	ft_atoi(const char *str)
 	{
 		sign = isneg(str[i], &i);
 		while (str[i] >= '0' && str[i] <= '9')
-		{
-			ans += (str[i] - '0');
-			ans *= 10;
-			i++;
-		}
+			ans = (ans * 10 + str[i++] - '0');
 	}
-	return (ans  * (sign / 10));
+	if (ans >= max_long + 1 && sign == -1)
+		return (0);
+	if (ans >= max_long)
+		return (-1);
+	return (ans * sign);
 }
 
-int main()
-{
-	char n[] = "  -922";
-	int i1 = atoi(n);
-	int i2 = ft_atoi(n);
-	// char escape[] = {9, 10, 11, 12, 13, 0, '+', '1'};
-//	printf("%s", escape);
-    printf("%d\n",i1);
-    printf("%d",i2);
-}
+// 9223372036854775807
+// int main()
+// {
+// 	char n[] = "9223372036854775808";	
+// 	int i1 = atoi(n);
+// 	int i2 = ft_atoi(n);
+// 	int j = 0;
+// 	printf("%d  ",i1);
+// 	printf("%d\n",i2);
+// }

@@ -6,7 +6,7 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 13:42:28 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/11 17:58:01 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/20 13:39:06 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 //#include <stdio.h>
 #include "libft.h"
 
-//27
-//cast to unsigned char, why?
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;

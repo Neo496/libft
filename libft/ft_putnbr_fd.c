@@ -6,7 +6,7 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 22:43:36 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/15 15:34:36 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/21 17:10:03 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,28 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned long long	res;
+	long long	res;
 
-	// res = n;
-	if (n < 0)
+	res = n;
+	if (fd < 0)
+		return ;
+	if (res >= 0 && res <= 9)
+	{
+		ft_putchar_fd(res + '0', fd);
+	}
+	if (res < 0)
 	{
 		ft_putchar_fd('-', fd);
-		// res *= -1;
-		n *= -1;
-		res = n;
+		res *= -1;
+		if (res >= 0 && res <= 9)
+		{
+			ft_putchar_fd(res + '0', fd);
+			return ;
+		}
 	}
-	if (res > 0)
+	if (res >= 10)
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd((n % 10) + '0', fd);
+		ft_putnbr_fd(res / 10, fd);
+		ft_putchar_fd((res % 10) + '0', fd);
 	}
 }
-
-// int main()
-// {
-// 	ft_putnbr_fd(0, 1);
-// }

@@ -6,7 +6,7 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:41:21 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/13 07:34:57 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/19 09:50:38 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,23 @@
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
+	size_t	j;
+	size_t	k;
 
+	k = 0;
 	i = 0;
-	if (dstsize <= 0)
-		return (ft_strlen(src));
-	while (i < dstsize - 1 && src[i] && dst[i])
-	{
-		dst[i] = src[i];
+	j = 0;
+	while (src[i] != '\0')
 		i++;
+	if (dstsize == 0)
+		return (i);
+	while (j < dstsize - 1 && src[j] != 0)
+	{
+		dst[j] = src[j];
+		j++;
 	}
-	if (dstsize >= 1)
-		dst[i] = '\0';
-	if (ft_strlen(src) == 0 && dstsize > 0)
-		dst[0] = '\0';
-	return (ft_strlen(src));
+	dst[j] = '\0';
+	return (i);
 }
 //
 // int main()

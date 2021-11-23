@@ -6,12 +6,11 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:33:09 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/15 15:09:24 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/21 16:51:45 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//size_t	len(const char *s);
 
 static	int	is_here(char const *s1, char const *set)
 {
@@ -28,7 +27,7 @@ static	int	is_here(char const *s1, char const *set)
 	return (0);
 }
 
-int	min_cpy(char const *s1, char const *set)
+static	int	min_cpy(char const *s1, char const *set)
 {
 	int	i;
 
@@ -43,7 +42,6 @@ int	min_cpy(char const *s1, char const *set)
 	return (i);
 }
 
-// ls1--; was in line 46
 static	int	max_cpy(char const *s1, char const *set)
 {
 	int	ls1;
@@ -65,17 +63,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		max_len;
 
 	j = 0;
-	if (!s1)
+	if (!s1 || !set)
 		return (0);
 	i = min_cpy(s1, set);
 	max_len = max_cpy(s1, set);
-	ans = malloc(sizeof(char) * (max_len - i + 1));
 	if (max_len == 0)
-	{
-		ans = malloc(sizeof(char));
-		ans[0] = '\0';
-		return (ans);
-	}
+		return (ft_strdup(""));
+	ans = malloc(sizeof(char) * (max_len - i + 1));
 	if (!ans)
 		return (0);
 	while (i < max_len)
@@ -86,8 +80,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 // int main()
 // {
-// 	char *s1 = "helloHave a nice a dayelloh";
-// 	char *s2 = "leho";
+// 	char *s1 = "          ";
+// 	// char *s2 = "leho";
 // 	// char const*s1 = "237131337hey 1337 hey13a1777777777372";
 // 	// char const*set = "7331";
 // 	// printf("%c\n", s1[14]);
@@ -95,5 +89,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 // 	// printf("%d\n", is_here(s1, set));
 // 	// //printf("%d\n", alloc(s1, set));
 // 	// printf("%d\n", max_cpy(s1, set));
-// 	printf("%s", ft_strtrim(s1, s2));
+// 	printf("%s", ft_strtrim(s1, "   "));
 // }

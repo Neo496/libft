@@ -6,7 +6,7 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:46:07 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/13 18:08:09 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/20 13:35:59 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static	int	length(int n)
 {
 	int	i;
-	
+
 	if (n == -2147483648)
 		return (11);
 	i = 0;
@@ -36,52 +36,49 @@ static	int	length(int n)
 	return (i);
 }
 
-char	*int_min()
+static	void	initialize(int *min, int *i, int *l, int n)
 {
-	char	*ans;
+	*min = 0;
+	*i = 0;
+	*l = length(n);
+}
 
-	ans = malloc(sizeof(char) * (1 + length(-2147483648)));
-	ans = "-2147483648";
-	return (ans);
+static	void	init2(char *str, long long *big_n, int *min)
+{
+	*str = '-';
+	*big_n = *big_n * (-1);
+	*min = 1;
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		l;
-	int		real_l;
-	int		i;
-	int		min;
-	long long	N;
+	char		*str;
+	int			l;
+	int			i;
+	int			min;
+	long long	big_n;
 
-	min = 0;
-	i = 0;
-	l = length(n);
-	real_l = l;
-	
-	N = n;
+	initialize(&min, &i, &l, n);
+	big_n = n;
 	str = malloc(sizeof(char) * (l + 1));
 	if (!str)
 		return (0);
 	if (n < 0)
-	{
-		str[0] = '-';
-		N *= -1;
-		min = 1;
-	}
+		init2(str, &big_n, &min);
 	l--;
 	while (l >= min)
 	{
-		str[l] = (N % 10) + '0';
-		N /= 10;
+		str[l] = (big_n % 10) + '0';
+		big_n /= 10;
 		l--;
 	}
-	str[real_l] = '\0';
+	str[length(n)] = '\0';
 	return (str);
 }
-// // for example, n == +6443 or ++6443?
+// for example, n == +6443 or ++6443?
 // int main()
 // {
-//     int a = -2147483648;
+//     int a = -214;
+// 	// printf("%d ", length(n));
 //     printf("%s", ft_itoa(a));
 // }

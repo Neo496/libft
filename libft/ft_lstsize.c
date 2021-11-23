@@ -6,13 +6,13 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 07:33:09 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/08 08:02:11 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/19 11:34:49 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
 	t_list	*curr;
 	int		i;

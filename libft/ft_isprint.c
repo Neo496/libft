@@ -6,12 +6,14 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 13:43:19 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/03 20:15:13 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/20 13:35:37 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include <stdio.h>
 //#include <ctype.h>
+#include "libft.h"
+
 int	ft_isprint(int c)
 {
 	if (c >= 32 && c <= 126)

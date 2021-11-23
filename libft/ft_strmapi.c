@@ -6,7 +6,7 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:45:29 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/15 13:57:23 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/21 17:13:50 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	size_t	i;
 
 	i = 0;
-	if (!s)
+	if (!s || !f)
 		return (0);
 	l = ft_strlen(s);
 	ans = malloc(l + 1);

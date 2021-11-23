@@ -6,7 +6,7 @@
 /*   By: atouba <atouba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 22:37:05 by atouba            #+#    #+#             */
-/*   Updated: 2021/11/11 23:03:18 by atouba           ###   ########.fr       */
+/*   Updated: 2021/11/21 17:10:57 by atouba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (s)
+	if (s && fd >= 0)
 	{
 		ft_putstr_fd(s, fd);
 		ft_putchar_fd('\n', fd);
